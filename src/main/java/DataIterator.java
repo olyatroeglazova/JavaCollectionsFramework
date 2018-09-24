@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class DataIterator implements Iterator {
     private int index;
@@ -32,10 +33,13 @@ public class DataIterator implements Iterator {
         try {
             return data.getGroups().get(currentGroupIndex).getData().get(++index);
         } catch (IndexOutOfBoundsException e) {
-            index = 0;
+            if(!this.hasNext()){
+                throw new NoSuchElementException();
+            }
             while (data.getGroups().get(currentGroupIndex + 1).length() == 0) {
                 ++currentGroupIndex;
             }
+            index = 0;
             return data.getGroups().get(++currentGroupIndex).getData().get(0);
         }
     }

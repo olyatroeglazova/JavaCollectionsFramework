@@ -16,7 +16,7 @@ public class ListDemo {
     //Список однофамильцев заданного человека среди людей из входного списка
     public List<Human> searchForNamesakes(List<Human> list, Human human) {
         List<Human> result = new ArrayList<>();
-        final String findSurname = human.getSurname();
+        String findSurname = human.getSurname();
         for (Human h: list) {
             if (findSurname.equals(h.getSurname())) {
                 result.add(h);
@@ -62,9 +62,9 @@ public class ListDemo {
     }
 
     //Cписок идентификаторов людей, чей возраст не менее 18 лет
-    public List<Integer> getHumansOlderThanSeventeen(Map<Integer, Human> map, Set<Integer> set) {
-        List<Integer> result = new ArrayList<>();
-        for (int value: set) {
+    public Set<Integer> getHumansOlderThanSeventeen(Map<Integer, Human> map) {
+        Set<Integer> result = new HashSet<>();
+        for (int value: map.keySet()) {
             Human h = map.get(value);
             if (h != null && h.getAge() >= 18) {
                 result.add(value);
